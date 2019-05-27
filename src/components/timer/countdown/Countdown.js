@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
-import './Countdown.scss';
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import "./Countdown.scss";
 
 class Countdown extends Component {
   state = {
@@ -40,7 +40,7 @@ class Countdown extends Component {
     this.setState({ timerOn: false });
     this.props.endTimer();
   };
-  
+
   resetTimer = () => {
     if (this.state.timerOn === false) {
       this.setState({
@@ -53,14 +53,18 @@ class Countdown extends Component {
     const { timerTime, timerStart } = this.state;
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
-    let timeWeight = (((timerStart-timerTime)/timerStart)*100).toFixed(3);
+    let timeWeight = (((timerStart - timerTime) / timerStart) * 100).toFixed(3);
 
     return (
-      <div className="Countdown">
-        <div className="Countdown-display">
-          <div className="Countdown-time">
-           <CircularProgressbar value={timeWeight} text={`${minutes} : ${seconds}`} strokeWidth={5} />
-           <p> {timeWeight}</p>
+      <div className="countdown">
+        <div className="countdown-display">
+          <div className="countdown-time">
+            <CircularProgressbar
+              value={timeWeight}
+              text={`${minutes} : ${seconds}`}
+              strokeWidth={5}
+            />
+            <p>{timeWeight}</p>
           </div>
         </div>
       </div>
