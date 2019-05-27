@@ -80,9 +80,9 @@ class LandingPage extends Component {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="device">
+            <div className="device-container">
               <img src={device} />
-              <div className="timers">
+              <div className="device-container__timers">
                 {firstTimer && (
                   <Countdown duration={30000} endTimer={this.endFirstTimer} />
                 )}
@@ -93,7 +93,10 @@ class LandingPage extends Component {
                   <Countdown duration={50000} endTimer={this.endThirdTimer} />
                 )}
               </div>
-              <img className="restart-icon" src={restartIcon} />
+              <img
+                className="device-container__restart-icon"
+                src={restartIcon}
+              />
             </div>
           </div>
         </div>
