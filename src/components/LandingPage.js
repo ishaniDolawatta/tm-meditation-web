@@ -83,6 +83,7 @@ class LandingPage extends Component {
           <div className="col-md-6">
             <div className="device-container">
               <img src={device} />
+              <ImageSlider typeOfDay={isDark ? 'light' :'dark'}/>
               <div className="device-container__timers">
                 {firstTimer && (
                   <Countdown duration={30000} endTimer={this.endFirstTimer} />
@@ -98,7 +99,6 @@ class LandingPage extends Component {
                 className="device-container__restart-icon"
                 src={restartIcon}
               />
-              <ImageSlider typeOfDay={isDark ? 'light' :'dark'}/>
             </div>
           </div>
         </div>
