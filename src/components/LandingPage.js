@@ -14,17 +14,15 @@ class LandingPage extends Component {
     thirdTimer: false
   };
 
-  endedFirstTimer = () => {
-    this.setState({ firstTimer: false });
-    this.setState({ secondTimer: true });
+  endFirstTimer = () => {
+    this.setState({ firstTimer: false, secondTimer: true  });
   }
 
-  endedSecondTimer = () => {
-    this.setState({ secondTimer: false });
-    this.setState({ thirdTimer: true });
+  endSecondTimer = () => {
+    this.setState({ secondTimer: false, thirdTimer: true  });
   }
 
-  endedThirdTimer = () => {
+  endThirdTimer = () => {
     this.setState({ thirdTimer: false });
   }
 
@@ -61,23 +59,13 @@ class LandingPage extends Component {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="Timers">{ firstTimer &&
-              <div>         
-                <p>1</p>
-                <Countdown duration={30000} endTimer={this.endedFirstTimer}/>
-              </div>  }
-            </div>
-            <div className="Timers"> { secondTimer &&
-              <div>         
-                <p>2</p>
-                <Countdown duration={40000} endTimer={this.endedSecondTimer}/>
-              </div>  }
-            </div>
-            <div className="Timers">{ thirdTimer && 
-              <div>         
-                <p>3</p>
-                <Countdown duration={50000} endTimer={this.endedThirdTimer}/>
-              </div>  }
+            <div className="timers">
+              { firstTimer &&   
+                <Countdown duration={30000} endTimer={this.endFirstTimer}/> }
+              { secondTimer &&       
+                <Countdown duration={40000} endTimer={this.endSecondTimer}/> }
+              { thirdTimer &&         
+                <Countdown duration={50000} endTimer={this.endThirdTimer}/> }
             </div>
           </div>
         </div>
