@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Countdown from "./timer/countdown/Countdown";
 
 import playIconDark from "../assets/icons/play-icon-dark.svg";
+import playIconLight from "../assets/icons/play-icon-light.svg";
 import googlePlay from "../assets/images/google-play.svg";
 import appStore from "../assets/images/app-store.svg";
 
@@ -9,9 +10,22 @@ import "./LandingPage.scss";
 
 class LandingPage extends Component {
   state = {
+    currentTime: new Date().getHours(),
     firstTimer: true,
     secondTimer: false,
     thirdTimer: false
+  };
+
+  componentDidMount() {
+    this.startTimer();
+  }
+
+  startTimer = () => {
+    this.timer = setInterval(() => {
+        this.setState({
+          currentTime: new Date().getHours()
+        });
+    }, 1000);
   };
 
   endFirstTimer = () => {
@@ -27,9 +41,10 @@ class LandingPage extends Component {
   }
 
   render() {
-    const { firstTimer, secondTimer, thirdTimer } = this.state;
+    const { firstTimer, secondTimer, thirdTimer, currentTime } = this.state;
+    const isDark = currentTime < 18;
     return (
-      <div className="background-color-day">
+      <div className={`main-container ${isDark ? "main-container--light":"main-container--dark"}`}>
         <div className="row">
           <div className="col-md-6">
             <div className="description-container">
@@ -45,7 +60,7 @@ class LandingPage extends Component {
                 </p>
 
                 <div className="mt-4 ml-2">
-                  <img src={playIconDark} />
+                  <img src={ isDark ?  playIconLight: playIconDark} />
                 </div>
                 <p className="description-container__main-description mt-3">
                   Please try the timer here or download it on Appstore and
