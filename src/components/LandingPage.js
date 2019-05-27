@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Countdown from "./timer/countdown/Countdown";
+import ImageSlider from "./image-slider/ImageSlider"
 
 import playIconDark from "../assets/icons/play-icon-dark.svg";
 import googlePlay from "../assets/images/google-play.svg";
@@ -97,6 +98,7 @@ class LandingPage extends Component {
                 className="device-container__restart-icon"
                 src={restartIcon}
               />
+              <ImageSlider x={isDark ? 'light' :'dark'}/>
             </div>
           </div>
         </div>
