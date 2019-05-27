@@ -8,7 +8,6 @@ import appStore from "../assets/images/app-store.svg";
 import device from "../assets/images/iphone.svg";
 import restartIcon from "../assets/icons/restart.svg";
 import playIconLight from "../assets/icons/play-icon-light.svg";
-import deviceBg from "../assets/images/img2.jpg";
 
 import "./LandingPage.scss";
 
@@ -84,10 +83,8 @@ class LandingPage extends Component {
           <div className="col-md-6">
             <div className="device-container">
               <img className="device-frame" src={device} />
-              <div className="background-image image-overlay-light"></div>
-              <img className="device-background" src={deviceBg} />
-              <img src={device} />
-              <ImageSlider typeOfDay={isDark ? 'light' :'dark'}/>
+              <div className={"background-image " + ( isDark ? 'image-overlay-light' : 'image-overlay-dark')}></div>
+              <ImageSlider className="device-background"  typeOfDay={isDark ? 'light' :'dark'}/>
               <div className="device-container__timers">
                 {firstTimer && (
                   <Countdown duration={30000} endTimer={this.endFirstTimer} />
