@@ -42,6 +42,10 @@ class LandingPage extends Component {
     this.setState({ thirdTimer: false });
   };
 
+  calculateDuration = (min, sec) => {
+    return min * 60000 + sec * 1000;
+  };
+
   render() {
     const { firstTimer, secondTimer, thirdTimer, currentTime } = this.state;
     const isDark = currentTime < 18;
@@ -84,13 +88,22 @@ class LandingPage extends Component {
               <img src={device} />
               <div className="device-container__timers">
                 {firstTimer && (
-                  <Countdown duration={30000} endTimer={this.endFirstTimer} />
+                  <Countdown
+                    duration={this.calculateDuration(0, 30)}
+                    endTimer={this.endFirstTimer}
+                  />
                 )}
                 {secondTimer && (
-                  <Countdown duration={40000} endTimer={this.endSecondTimer} />
+                  <Countdown
+                    duration={this.calculateDuration(20, 0)}
+                    endTimer={this.endSecondTimer}
+                  />
                 )}
                 {thirdTimer && (
-                  <Countdown duration={50000} endTimer={this.endThirdTimer} />
+                  <Countdown
+                    duration={this.calculateDuration(2, 0)}
+                    endTimer={this.endThirdTimer}
+                  />
                 )}
               </div>
               <img
