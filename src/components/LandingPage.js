@@ -9,11 +9,27 @@ import "./LandingPage.scss";
 
 class LandingPage extends Component {
   state = {
-    timer: true
+    firstTimer: true,
+    secondTimer: false,
+    thirdTimer: false
   };
 
+  endedFirstTimer = () => {
+    this.setState({ firstTimer: false });
+    this.setState({ secondTimer: true });
+  }
+
+  endedSecondTimer = () => {
+    this.setState({ secondTimer: false });
+    this.setState({ thirdTimer: true });
+  }
+
+  endedThirdTimer = () => {
+    this.setState({ thirdTimer: false });
+  }
+
   render() {
-    const { timer } = this.state;
+    const { firstTimer, secondTimer, thirdTimer } = this.state;
     return (
       <div className="background-color-day">
         <div className="row">
@@ -45,13 +61,23 @@ class LandingPage extends Component {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="timers">
-              {timer && (
-                <div>
-                  <p>1</p>
-                  <Countdown duration={30000} />
-                </div>
-              )}
+            <div className="Timers">{ firstTimer &&
+              <div>         
+                <p>1</p>
+                <Countdown duration={30000} endTimer={this.endedFirstTimer}/>
+              </div>  }
+            </div>
+            <div className="Timers"> { secondTimer &&
+              <div>         
+                <p>2</p>
+                <Countdown duration={40000} endTimer={this.endedSecondTimer}/>
+              </div>  }
+            </div>
+            <div className="Timers">{ thirdTimer && 
+              <div>         
+                <p>3</p>
+                <Countdown duration={50000} endTimer={this.endedThirdTimer}/>
+              </div>  }
             </div>
           </div>
         </div>
