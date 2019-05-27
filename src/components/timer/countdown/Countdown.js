@@ -38,6 +38,7 @@ class Countdown extends Component {
   stopTimer = () => {
     clearInterval(this.timer);
     this.setState({ timerOn: false });
+    this.props.endTimer();
   };
   
   resetTimer = () => {
