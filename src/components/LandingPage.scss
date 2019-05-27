@@ -3,21 +3,11 @@
   width: 100vw;
 
   &--light {
-    background-image: linear-gradient(
-      155deg,
-      #fafafa 0%,
-      #f1f1f1 47%,
-      #cecece 100%
-    );
+    background-image: linear-gradient(155deg, #fafafa 0%, #f1f1f1 47%, #cecece 100%);
     color: #4d4d4d;
   }
   &--dark {
-    background-image: linear-gradient(
-      155deg,
-      #696969 0%,
-      #5d5d5d 48%,
-      #1f1f1f 100%
-    );
+    background-image: linear-gradient(155deg, #696969 0%, #5d5d5d 48%, #1f1f1f 100%);
     color: #f3f3f3;
   }
 
@@ -42,18 +32,56 @@
     position: relative;
     margin-top: 16%;
     margin-left: 20%;
+    max-width: fit-content;
+    background-size: cover;
+    border-radius: 50px;
 
     &__timers {
       position: absolute;
       width: 960px;
       top: 140px;
       left: 44px;
+      z-index: 50;
     }
 
     &__restart-icon {
       position: absolute;
       top: 420px;
       left: 120px;
+      z-index: 50;
     }
   }
+}
+
+.device-frame {
+  position: absolute;
+  z-index: 100;
+}
+
+.device-background {
+  z-index: 10;
+  position: absolute;
+  object-fit: cover;
+  border-radius: 26px;
+  width: 240px;
+  height: 520px;
+  left: 18px;
+  top: 16px;
+}
+
+.background-image {
+  position: absolute;
+  width: 240px;
+  height: 520px;
+  left: 18px;
+  top: 16px;
+  z-index: 20;
+}
+
+.image-overlay-light {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.image-overlay-dark {
+  background-color: rgba(0, 0, 0, 0.7);
 }
