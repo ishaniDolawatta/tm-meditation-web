@@ -98,7 +98,7 @@ class LandingPage extends Component {
                 className="device-container__restart-icon"
                 src={restartIcon}
               />
-              <ImageSlider x={isDark ? 'light' :'dark'}/>
+              <ImageSlider typeOfDay={isDark ? 'light' :'dark'}/>
             </div>
           </div>
         </div>

@@ -14,7 +14,7 @@ class ImageSlider extends Component {
   getImages = () => {
     let images = [];
     for (let index = 1; index < 28; index++) {
-        images.push("https://s3.us-east-2.amazonaws.com/tm-meditation/"+this.props.x+"/"+index+".jpg");
+        images.push("https://s3.us-east-2.amazonaws.com/tm-meditation/"+this.props.typeOfDay+"/"+index+".jpg");
     }
 
     images.forEach( (image,index) => {
