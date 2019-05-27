@@ -42,11 +42,9 @@ class Countdown extends Component {
   };
 
   resetTimer = () => {
-    if (this.state.timerOn === false) {
-      this.setState({
-        timerTime: this.state.timerStart
-      });
-    }
+    this.setState({
+      timerTime: this.state.timerStart
+    });
   };
 
   render() {
