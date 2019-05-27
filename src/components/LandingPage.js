@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Countdown from "./timer/countdown/Countdown";
-import ImageSlider from "./image-slider/ImageSlider"
+import ImageSlider from "./image-slider/ImageSlider";
 
 import playIconDark from "../assets/icons/play-icon-dark.svg";
 import googlePlay from "../assets/images/google-play.svg";
@@ -82,9 +82,16 @@ class LandingPage extends Component {
           </div>
           <div className="col-md-6">
             <div className="device-container">
-              <img className="device-frame" src={device} />
-              <div className={"background-image-overlay " + ( isDark ? 'image-overlay-light' : 'image-overlay-dark')}></div>
-              <ImageSlider typeOfDay={isDark ? 'light' :'dark'}/>
+              <img className="device-container__device-frame" src={device} />
+              <div
+                className={
+                  "device-container__background-image-overlay " +
+                  (isDark
+                    ? "device-container__background-image-overlay--light"
+                    : "device-container__background-image-overlay--dark")
+                }
+              />
+              <ImageSlider typeOfDay={isDark ? "light" : "dark"} />
               <div className="device-container__timers">
                 {firstTimer && (
                   <Countdown duration={30000} endTimer={this.endFirstTimer} />
