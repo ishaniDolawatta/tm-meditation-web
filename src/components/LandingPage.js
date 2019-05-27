@@ -5,6 +5,7 @@ import playIconDark from "../assets/icons/play-icon-dark.svg";
 import googlePlay from "../assets/images/google-play.svg";
 import appStore from "../assets/images/app-store.svg";
 import device from "../assets/images/iphone.svg";
+import restartIcon from "../assets/icons/restart.svg";
 
 import "./LandingPage.scss";
 
@@ -73,15 +74,8 @@ class LandingPage extends Component {
                   <Countdown duration={50000} endTimer={this.endThirdTimer} />
                 )}
               </div>
+              <img className="restart-icon" src={restartIcon} />
             </div>
-            {/*         { <div className="timers">
-              { firstTimer &&   
-                <Countdown duration={30000} endTimer={this.endFirstTimer}/> }
-              { secondTimer &&       
-                <Countdown duration={40000} endTimer={this.endSecondTimer}/> }
-              { thirdTimer &&         
-                <Countdown duration={50000} endTimer={this.endThirdTimer}/> }
-            </div> } */}
           </div>
         </div>
       </div>
