@@ -1,47 +1,59 @@
-.background-color-day {
-  background-image: linear-gradient(
-    155deg,
-    #fafafa 0%,
-    #f1f1f1 47%,
-    #cecece 100%
-  );
+.main-container {
   min-height: 100vh;
   width: 100vw;
-}
 
-.description-container {
-  position: relative;
-  left: 12.5vw;
-  width: 21vw;
-  top: 30vh;
-
-  &__main-description {
-    font-family: ArialRoundedMTBold;
-    font-size: 16px;
+  &--light {
+    background-image: linear-gradient(
+      155deg,
+      #fafafa 0%,
+      #f1f1f1 47%,
+      #cecece 100%
+    );
     color: #4d4d4d;
-    line-height: 20px;
   }
-  &__app-links {
-    display: flex;
-    justify-content: space-around;
+  &--dark {
+    background-image: linear-gradient(
+      155deg,
+      #696969 0%,
+      #5d5d5d 48%,
+      #1f1f1f 100%
+    );
+    color: #f3f3f3;
   }
-}
 
-.device {
-  position: relative;
-  margin-top:16%;
-  margin-left: 20%;
-}
+  .description-container {
+    position: relative;
+    left: 12.5vw;
+    width: 21vw;
+    top: 30vh;
 
-.timers{
-  position: absolute;
-  width: 960px;
-  top: 140px;
-  left: 44px
-}
+    &__main-description {
+      font-family: ArialRoundedMTBold;
+      font-size: 16px;
+      line-height: 20px;
+    }
+    &__app-links {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
 
-.restart-icon {
-  position: absolute;
-  top: 420px;
-  left: 120px;
+  .device {
+    position: relative;
+    margin-top:16%;
+    margin-left: 20%;
+  }
+  
+  .timers{
+    position: absolute;
+    width: 960px;
+    top: 140px;
+    left: 44px
+  }
+  
+  .restart-icon {
+    position: absolute;
+    top: 420px;
+    left: 120px;
+  }
 }
