@@ -4,6 +4,7 @@ import Countdown from "./timer/countdown/Countdown";
 import playIconDark from "../assets/icons/play-icon-dark.svg";
 import googlePlay from "../assets/images/google-play.svg";
 import appStore from "../assets/images/app-store.svg";
+import device from "../assets/images/iphone.svg";
 
 import "./LandingPage.scss";
 
@@ -15,16 +16,16 @@ class LandingPage extends Component {
   };
 
   endFirstTimer = () => {
-    this.setState({ firstTimer: false, secondTimer: true  });
-  }
+    this.setState({ firstTimer: false, secondTimer: true });
+  };
 
   endSecondTimer = () => {
-    this.setState({ secondTimer: false, thirdTimer: true  });
-  }
+    this.setState({ secondTimer: false, thirdTimer: true });
+  };
 
   endThirdTimer = () => {
     this.setState({ thirdTimer: false });
-  }
+  };
 
   render() {
     const { firstTimer, secondTimer, thirdTimer } = this.state;
@@ -59,14 +60,28 @@ class LandingPage extends Component {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="timers">
+            <div className="device">
+              <img src={device} />
+              <div className="timers">
+                {firstTimer && (
+                  <Countdown duration={30000} endTimer={this.endFirstTimer} />
+                )}
+                {secondTimer && (
+                  <Countdown duration={40000} endTimer={this.endSecondTimer} />
+                )}
+                {thirdTimer && (
+                  <Countdown duration={50000} endTimer={this.endThirdTimer} />
+                )}
+              </div>
+            </div>
+            {/*         { <div className="timers">
               { firstTimer &&   
                 <Countdown duration={30000} endTimer={this.endFirstTimer}/> }
               { secondTimer &&       
                 <Countdown duration={40000} endTimer={this.endSecondTimer}/> }
               { thirdTimer &&         
                 <Countdown duration={50000} endTimer={this.endThirdTimer}/> }
-            </div>
+            </div> } */}
           </div>
         </div>
       </div>
