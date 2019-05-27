@@ -32,7 +32,6 @@ class LandingPage extends Component {
   };
 
   startTimer = () => {
-    console.log("abcd");
     this.setState({ firstTimer: true, secondTimer: false, thirdTimer: false });
     this.refs.imageSlider.startTimer();
 
