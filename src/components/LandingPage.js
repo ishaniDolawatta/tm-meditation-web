@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import Countdown from "./timer/countdown/Countdown";
 
 import playIconDark from "../assets/icons/play-icon-dark.svg";
-import playIconLight from "../assets/icons/play-icon-light.svg";
 import googlePlay from "../assets/images/google-play.svg";
 import appStore from "../assets/images/app-store.svg";
+import device from "../assets/images/iphone.svg";
+import restartIcon from "../assets/icons/restart.svg";
+import playIconLight from "../assets/icons/play-icon-light.svg";
 
 import "./LandingPage.scss";
 
@@ -78,16 +80,23 @@ class LandingPage extends Component {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="timers">
-              {firstTimer && (
-                <Countdown duration={30000} endTimer={this.endFirstTimer} />
-              )}
-              {secondTimer && (
-                <Countdown duration={40000} endTimer={this.endSecondTimer} />
-              )}
-              {thirdTimer && (
-                <Countdown duration={50000} endTimer={this.endThirdTimer} />
-              )}
+            <div className="device-container">
+              <img src={device} />
+              <div className="device-container__timers">
+                {firstTimer && (
+                  <Countdown duration={30000} endTimer={this.endFirstTimer} />
+                )}
+                {secondTimer && (
+                  <Countdown duration={40000} endTimer={this.endSecondTimer} />
+                )}
+                {thirdTimer && (
+                  <Countdown duration={50000} endTimer={this.endThirdTimer} />
+                )}
+              </div>
+              <img
+                className="device-container__restart-icon"
+                src={restartIcon}
+              />
             </div>
           </div>
         </div>

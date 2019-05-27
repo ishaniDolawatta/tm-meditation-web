@@ -37,4 +37,23 @@
       justify-content: space-around;
     }
   }
+
+  .device-container {
+    position: relative;
+    margin-top: 16%;
+    margin-left: 20%;
+
+    &__timers {
+      position: absolute;
+      width: 960px;
+      top: 140px;
+      left: 44px;
+    }
+
+    &__restart-icon {
+      position: absolute;
+      top: 420px;
+      left: 120px;
+    }
+  }
 }
