@@ -96,11 +96,11 @@ class LandingPage extends Component {
                 className={
                   "device-container__background-image-overlay " +
                   (isDark
-                    ? "device-container__background-image-overlay--light"
-                    : "device-container__background-image-overlay--dark")
+                    ? "device-container__background-image-overlay--dark"
+                    : "device-container__background-image-overlay--light")
                 }
               />
-              <ImageSlider typeOfDay={isDark ? "light" : "dark"} ref="imageSlider"/>
+              <ImageSlider typeOfDay={isDark ? "dark" : "light"} ref="imageSlider"/>
               <div className="device-container__timers">
                 {firstTimer && (
                   <Countdown duration={30000} endTimer={this.endFirstTimer} ref="firstCountdown" />
