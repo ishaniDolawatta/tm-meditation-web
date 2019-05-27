@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Countdown from "./timer/countdown/Countdown";
-import ImageSlider from "./image-slider/ImageSlider"
+import ImageSlider from "./image-slider/ImageSlider";
 
 import playIconDark from "../assets/icons/play-icon-dark.svg";
 import googlePlay from "../assets/images/google-play.svg";
@@ -32,6 +32,7 @@ class LandingPage extends Component {
   };
 
   startTimer = () => {
+    console.log("abcd");
     this.setState({ firstTimer: true, secondTimer: false, thirdTimer: false });
     this.refs.imageSlider.startTimer();
 
@@ -91,8 +92,16 @@ class LandingPage extends Component {
           </div>
           <div className="col-md-6">
             <div className="device-container">
-              <img src={device} />
-              <ImageSlider typeOfDay={isDark ? 'dark' :'light'} ref="imageSlider"/>
+              <img className="device-container__device-frame" src={device} />
+              <div
+                className={
+                  "device-container__background-image-overlay " +
+                  (isDark
+                    ? "device-container__background-image-overlay--light"
+                    : "device-container__background-image-overlay--dark")
+                }
+              />
+              <ImageSlider typeOfDay={isDark ? "light" : "dark"} ref="imageSlider"/>
               <div className="device-container__timers">
                 {firstTimer && (
                   <Countdown duration={30000} endTimer={this.endFirstTimer} ref="firstCountdown" />
