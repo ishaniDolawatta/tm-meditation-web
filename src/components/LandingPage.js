@@ -14,22 +14,31 @@ import "./LandingPage.scss";
 class LandingPage extends Component {
   state = {
     currentTime: new Date().getHours(),
-    firstTimer: true,
+    firstTimer: false,
     secondTimer: false,
     thirdTimer: false
   };
 
   componentDidMount() {
-    this.startTimer();
+    this.getCurrentTime();
   }
 
-  startTimer = () => {
+  getCurrentTime = () => {
     this.timer = setInterval(() => {
       this.setState({
         currentTime: new Date().getHours()
       });
     }, 1000);
   };
+
+  startTimer = () => {
+    this.setState({ firstTimer: true, secondTimer: false, thirdTimer: false });
+    this.refs.imageSlider.startTimer();
+
+    if(this.state.firstTimer){
+      this.refs.firstCountdown.resetTimer();
+    } 
+  }
 
   endFirstTimer = () => {
     this.setState({ firstTimer: false, secondTimer: true });
@@ -91,10 +100,10 @@ class LandingPage extends Component {
                     : "device-container__background-image-overlay--dark")
                 }
               />
-              <ImageSlider typeOfDay={isDark ? "light" : "dark"} />
+              <ImageSlider typeOfDay={isDark ? "light" : "dark"} ref="imageSlider"/>
               <div className="device-container__timers">
                 {firstTimer && (
-                  <Countdown duration={30000} endTimer={this.endFirstTimer} />
+                  <Countdown duration={30000} endTimer={this.endFirstTimer} ref="firstCountdown" />
                 )}
                 {secondTimer && (
                   <Countdown duration={40000} endTimer={this.endSecondTimer} />
@@ -106,6 +115,7 @@ class LandingPage extends Component {
               <img
                 className="device-container__restart-icon"
                 src={restartIcon}
+                onClick={this.startTimer}
               />
             </div>
           </div>

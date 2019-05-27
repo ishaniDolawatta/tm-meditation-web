@@ -26,11 +26,11 @@ class ImageSlider extends Component {
       this.setState({
         currentImage: this.state.imageList[0]
       });
-      this.startTimer();
     });
   }
 
   startTimer = () => {
+    console.log("b");
     this.setState({
       timerOn: true,
       timerTime: this.state.timerTime,
