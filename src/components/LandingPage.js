@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Countdown from "./timer/countdown/Countdown";
 import ImageSlider from "./image-slider/ImageSlider";
+import SoundPlayer from "./sound-player/SoundPlayer";
 import moment from "moment";
 
 import playIconDark from "../assets/icons/play-icon-dark.svg";
@@ -16,7 +17,8 @@ import "./LandingPage.scss";
 class LandingPage extends Component {
   state = {
     currentTheme: this.getCurrentTheme(),
-    isTimerOn: false
+    isTimerOn: false,
+    isSoundOn: false
   };
 
   componentDidMount() {
@@ -86,7 +88,14 @@ class LandingPage extends Component {
         isTimerOn: false
       });
     } else {
-      this.refs.countdown.startTimer();
+      this.setState(
+        {
+          isSoundOn: true
+        },
+        () => {
+          this.refs.countdown.startTimer();
+        }
+      );
     }
   };
 
@@ -95,7 +104,7 @@ class LandingPage extends Component {
   };
 
   render() {
-    const { isTimerOn, currentTheme } = this.state;
+    const { isTimerOn, currentTheme, isSoundOn } = this.state;
     const isDark = currentTheme === theme.THEME_TYPE_NIGHT;
 
     return (
@@ -156,6 +165,7 @@ class LandingPage extends Component {
                     ref="countdown"
                   />
                 )}
+                {isSoundOn && <SoundPlayer />}
               </div>
               <img
                 className="device-container__restart-icon"
