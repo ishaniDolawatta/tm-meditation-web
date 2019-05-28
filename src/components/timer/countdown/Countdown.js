@@ -95,13 +95,13 @@ class Countdown extends Component {
               text={`${minutes} : ${seconds}`}
               styles={{
                 trail: {
-                  stroke: this.props.isDark ? "#E4E4E4" : "#4D4D4D"
+                  stroke: this.props.isDark ? "#E4E4E4" : "#8F8F8F"
                 },
                 path: {
-                  stroke: this.props.isDark ? "#676767" : "#8F8F8F"
+                  stroke: this.props.isDark ? "#676767" : "#4D4D4D"
                 },
                 text: {
-                  fill: this.props.isDark ? "#4D4D4D" : "#E4E4E4"
+                  fill: this.props.isDark ? "#4D4D4D" : "#4D4D4D"
                 }
               }}
             />
