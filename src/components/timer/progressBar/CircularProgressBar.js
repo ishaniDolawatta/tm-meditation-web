@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-class CircularProgressBar extends Component {
-} 
+class CircularProgressBar extends Component {}
 
 export default CircularProgressBar;
