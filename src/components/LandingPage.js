@@ -35,10 +35,10 @@ class LandingPage extends Component {
     this.setState({ firstTimer: true, secondTimer: false, thirdTimer: false });
     this.refs.imageSlider.startTimer();
 
-    if(this.state.firstTimer){
+    if (this.state.firstTimer) {
       this.refs.firstCountdown.resetTimer();
-    } 
-  }
+    }
+  };
 
   endFirstTimer = () => {
     this.setState({ firstTimer: false, secondTimer: true });
@@ -55,6 +55,7 @@ class LandingPage extends Component {
   render() {
     const { firstTimer, secondTimer, thirdTimer, currentTime } = this.state;
     const isDark = currentTime < 18;
+
     return (
       <div
         className={`main-container ${
@@ -96,17 +97,29 @@ class LandingPage extends Component {
                 className={
                   "device-container__background-image-overlay " +
                   (isDark
-                    ? "device-container__background-image-overlay--light"
-                    : "device-container__background-image-overlay--dark")
+                    ? "device-container__background-image-overlay--dark"
+                    : "device-container__background-image-overlay--light")
                 }
               />
-              <ImageSlider typeOfDay={isDark ? "light" : "dark"} ref="imageSlider"/>
+              <ImageSlider
+                typeOfDay={isDark ? "dark" : "light"}
+                ref="imageSlider"
+              />
+
               <div className="device-container__timers">
                 {firstTimer && (
-                  <Countdown duration={30000} endTimer={this.endFirstTimer} ref="firstCountdown" />
+                  <Countdown
+                    duration={30000}
+                    endTimer={this.endFirstTimer}
+                    ref="firstCountdown"
+                  />
                 )}
                 {secondTimer && (
-                  <Countdown duration={40000} endTimer={this.endSecondTimer} />
+                  <Countdown
+                    showProgressBar
+                    duration={40000}
+                    endTimer={this.endSecondTimer}
+                  />
                 )}
                 {thirdTimer && (
                   <Countdown duration={50000} endTimer={this.endThirdTimer} />

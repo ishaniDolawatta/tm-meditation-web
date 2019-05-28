@@ -49,6 +49,7 @@ class Countdown extends Component {
 
   render() {
     const { timerTime, timerStart } = this.state;
+    const { showProgressBar } = this.props;
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
     let timeWeight = (((timerStart - timerTime) / timerStart) * 100).toFixed(3);
@@ -60,7 +61,7 @@ class Countdown extends Component {
             <CircularProgressbar
               value={timeWeight}
               text={`${minutes} : ${seconds}`}
-              strokeWidth={5}
+              strokeWidth={showProgressBar ? 5 : 0}
             />
             <p>{timeWeight}</p>
           </div>
