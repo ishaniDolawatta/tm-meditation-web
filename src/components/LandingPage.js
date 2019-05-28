@@ -10,6 +10,7 @@ import device from "../assets/images/iphone.svg";
 import restartIcon from "../assets/icons/restart.svg";
 import playIconLight from "../assets/icons/play-icon-light.svg";
 import * as theme from "../config/constants/theme";
+import * as description from "../config/constants/description";
 
 import "./LandingPage.scss";
 
@@ -110,21 +111,18 @@ class LandingPage extends Component {
             <div className="description-container">
               <div>
                 <p className="description-container__main-description mb-0">
-                  Blackbird TM Timer is a simplistic timer for all of you doing
-                  Trancendental Meditation.
+                  {description.FIRST_DESCRIPTION}
                 </p>
                 <p className="description-container__main-description">
-                  With creative energy from learning TM in Rishikesh in 1968
-                  Paul McCartney composed the simple and beautiful song
-                  Blackbird.
+                  {description.SECOND_DESCRIPTION}
                 </p>
 
                 <div className="mt-4 ml-2">
                   <img src={isDark ? playIconDark : playIconLight} />
                 </div>
+
                 <p className="description-container__main-description mt-3">
-                  Please try the timer here or download it on Appstore and
-                  Google play.
+                  {description.APP_LINKS_DESCRIPTION}
                 </p>
               </div>
               <div className="description-container__app-links mt-5 ">
