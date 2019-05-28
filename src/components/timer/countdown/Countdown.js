@@ -49,6 +49,7 @@ class Countdown extends Component {
 
   render() {
     const { timerTime, timerStart } = this.state;
+    const { showProgressBar } = this.props;
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
     const durationInSeconds = this.props.duration / 1000;
@@ -58,11 +59,14 @@ class Countdown extends Component {
     return (
       <div className="countdown">
         <div className="countdown-display">
-          <div className="countdown-time">
+          <div
+            className={`countdown-time ${
+              showProgressBar ? "countdown-time__show-progress-bar" : ""
+            }`}
+          >
             <CircularProgressbar
               value={percentage}
               text={`${minutes} : ${seconds}`}
-              strokeWidth={5}
               styles={{
                 pathColor: `red`,
                 trail: {
@@ -75,6 +79,7 @@ class Countdown extends Component {
                   fill: this.props.isDay ? "#4D4D4D" : "#676767"
                 }
               }}
+              strokeWidth={showProgressBar ? 3 : 0}
             />
           </div>
         </div>

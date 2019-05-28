@@ -54,7 +54,8 @@ class LandingPage extends Component {
 
   render() {
     const { firstTimer, secondTimer, thirdTimer, currentTime } = this.state;
-    const isDark = currentTime < 18;
+    const isDark = currentTime > 18;
+
     return (
       <div
         className={`main-container ${
@@ -96,14 +97,15 @@ class LandingPage extends Component {
                 className={
                   "device-container__background-image-overlay " +
                   (isDark
-                    ? "device-container__background-image-overlay--light"
-                    : "device-container__background-image-overlay--dark")
+                    ? "device-container__background-image-overlay--dark"
+                    : "device-container__background-image-overlay--light")
                 }
               />
               <ImageSlider
-                typeOfDay={isDark ? "light" : "dark"}
+                typeOfDay={isDark ? "dark" : "light"}
                 ref="imageSlider"
               />
+
               <div className="device-container__timers">
                 {firstTimer && (
                   <Countdown
@@ -114,9 +116,9 @@ class LandingPage extends Component {
                 )}
                 {secondTimer && (
                   <Countdown
+                    showProgressBar
                     duration={40000}
                     endTimer={this.endSecondTimer}
-                    isDay={isDark ? true : false}
                   />
                 )}
                 {thirdTimer && (
