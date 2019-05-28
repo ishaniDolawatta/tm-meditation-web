@@ -122,7 +122,12 @@ class LandingPage extends Component {
               <p>{description.SECOND_DESCRIPTION}</p>
 
               <div className="ml-2">
-                <img src={isDark ? playIconDark : playIconLight} alt="" />
+                <a
+                  target="_blank"
+                  href="https://open.spotify.com/track/1yyoXvegrF9Q0PIL0eLPDU?si=P7U0WS2nSGaRjJjUgJuoZQ"
+                >
+                  <img src={isDark ? playIconDark : playIconLight} alt="" />
+                </a>
               </div>
               <p className="mt-3">{description.APP_LINKS_DESCRIPTION}</p>
             </div>
