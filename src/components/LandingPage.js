@@ -26,7 +26,7 @@ class LandingPage extends Component {
   }
 
   setupTheme = () => {
-    this.themeTimer = setTimeout(function changeDayNightTheme() {
+    this.themeTimer = setTimeout(changeDayNightTheme => {
       this.changeDayNight();
       this.themeTimer = setTimeout(
         changeDayNightTheme,
