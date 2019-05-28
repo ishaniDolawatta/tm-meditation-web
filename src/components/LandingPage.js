@@ -71,6 +71,7 @@ class LandingPage extends Component {
   }
 
   startTimer = () => {
+    console.log("a");
     this.setState({ firstTimer: true, secondTimer: false, thirdTimer: false });
     this.refs.imageSlider.startTimer();
 
@@ -89,6 +90,10 @@ class LandingPage extends Component {
 
   endThirdTimer = () => {
     this.setState({ thirdTimer: false });
+  };
+
+  calculateDuration = (min, sec) => {
+    return min * 60000 + sec * 1000;
   };
 
   render() {
@@ -148,7 +153,7 @@ class LandingPage extends Component {
               <div className="device-container__timers">
                 {firstTimer && (
                   <Countdown
-                    duration={30000}
+                    duration={this.calculateDuration(0, 30)}
                     endTimer={this.endFirstTimer}
                     ref="firstCountdown"
                   />
@@ -156,12 +161,15 @@ class LandingPage extends Component {
                 {secondTimer && (
                   <Countdown
                     showProgressBar
-                    duration={40000}
+                    duration={this.calculateDuration(20, 0)}
                     endTimer={this.endSecondTimer}
                   />
                 )}
                 {thirdTimer && (
-                  <Countdown duration={50000} endTimer={this.endThirdTimer} />
+                  <Countdown
+                    duration={this.calculateDuration(2, 0)}
+                    endTimer={this.endThirdTimer}
+                  />
                 )}
               </div>
               <img
