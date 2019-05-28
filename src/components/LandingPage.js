@@ -75,7 +75,7 @@ class LandingPage extends Component {
     this.setState(
       {
         isTimerOn: true,
-        isSoundOn: false
+        isSoundOn: true
       },
       () => {
         this.refs.imageSlider.resetTimer();
