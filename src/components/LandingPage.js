@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Countdown from "./timer/countdown/Countdown";
 import ImageSlider from "./image-slider/ImageSlider";
+import moment from "moment";
 
 import playIconDark from "../assets/icons/play-icon-dark.svg";
 import googlePlay from "../assets/images/google-play.svg";
@@ -8,34 +9,68 @@ import appStore from "../assets/images/app-store.svg";
 import device from "../assets/images/iphone.svg";
 import restartIcon from "../assets/icons/restart.svg";
 import playIconLight from "../assets/icons/play-icon-light.svg";
+import * as theme from "../config/constants/theme";
 
 import "./LandingPage.scss";
 
 class LandingPage extends Component {
   state = {
-    currentTime: new Date().getHours(),
+    theme: this.getCurrentTheme,
     firstTimer: false,
     secondTimer: false,
     thirdTimer: false
   };
 
   componentDidMount() {
-    this.getCurrentTime();
+    this.setupTheme();
   }
 
-  getCurrentTime = () => {
-    this.timer = setInterval(() => {
-      this.setState({
-        currentTime: new Date().getHours()
-      });
-    }, 1000);
+  setupTheme = () => {
+    this.themeTimer = setTimeout(function changeDayNightTheme() {
+      this.changeDayNight();
+      this.themeTimer = setTimeout(changeDayNightTheme, this.getDayNightTimeDuration());
+    }, this.getDayNightTimeDuration());
   };
+
+  getDayNightTimeDuration = () => {
+		const now = moment();
+
+		if (now.isBefore(theme.DAY_TIME)) {
+			return theme.DAY_TIME.diff(now);
+		}
+
+		const sixPM = moment({ hour: 18 });
+		if (now.isBetween(theme.DAY_TIME, theme.NIGHT_TIME)) {
+			return theme.NIGHT_TIME.diff(now);
+		}
+
+		if (now.isSameOrAfter(theme.NIGHT_TIME)) {
+			const tomorrowSixAM = theme.DAY_TIME.clone().add(1, "d");
+			return tomorrowSixAM.diff(now);
+		}
+
+		return 0;
+  };
+  
+  changeDayNight = () => {
+		const currentTheme = this.getCurrentTheme;
+		this.setState({ theme: currentTheme });
+  };
+  
+  getCurrentTheme = () => {
+		const now = moment();
+		return now.isBetween(theme.DAY_TIME, theme.NIGHT_TIME) ? theme.THEME_TYPE_DAY : theme.THEME_TYPE_NIGHT;
+	};
+
+	clearDayNight() {
+		clearTimeout(this.themeTimer);
+	}
 
   startTimer = () => {
     this.setState({ firstTimer: true, secondTimer: false, thirdTimer: false });
     this.refs.imageSlider.startTimer();
 
-    if(this.state.firstTimer){
+    if(this.state.firstTimer) {
       this.refs.firstCountdown.resetTimer();
     } 
   }
@@ -53,8 +88,8 @@ class LandingPage extends Component {
   };
 
   render() {
-    const { firstTimer, secondTimer, thirdTimer, currentTime } = this.state;
-    const isDark = currentTime < 18;
+    const { firstTimer, secondTimer, thirdTimer, theme } = this.state;
+    const isDark = theme === "THEME_TYPE_NIGHT";
     return (
       <div
         className={`main-container ${
