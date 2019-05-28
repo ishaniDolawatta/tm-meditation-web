@@ -22,6 +22,8 @@ class Countdown extends Component {
   ];
 
   startTimer = () => {
+    console.log("b");
+    
     this.setState({
       timerOn: true,
       timerTime: this.sessions[this.state.currentsessionIndex],
@@ -73,13 +75,13 @@ class Countdown extends Component {
   }
 
   render() {
-    const { timerTime, timerStart } = this.state;
-    const { showProgressBar } = this.props;
+    const { timerTime, currentsessionIndex } = this.state;
+    const  showProgressBar  = currentsessionIndex === 1;
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
     const durationInSeconds = this.props.duration / 1000;
 
-    const percentage = ((minutes * 60 + seconds) / durationInSeconds) * 100;
+    const percentage = ((minutes * 60) / durationInSeconds) * 100;
 
     return (
       <div className="countdown">
@@ -93,18 +95,16 @@ class Countdown extends Component {
               value={percentage}
               text={`${minutes} : ${seconds}`}
               styles={{
-                pathColor: `red`,
                 trail: {
-                  stroke: this.props.isDay ? "#8F8F8F" : "#E4E4E4"
+                  stroke: this.props.isDark ? "#676767" : "#8F8F8F"
                 },
                 path: {
-                  stroke: this.props.isDay ? "#4D4D4D" : "#676767"
+                  stroke: this.props.isDark ? "#E4E4E4" : "#4D4D4D"
                 },
                 text: {
-                  fill: this.props.isDay ? "#4D4D4D" : "#676767"
+                  fill: this.props.isDark ? "#E4E4E4" : "#4D4D4D"
                 }
               }}
-              strokeWidth={showProgressBar ? 3 : 0}
             />
           </div>
         </div>

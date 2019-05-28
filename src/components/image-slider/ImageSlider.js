@@ -106,7 +106,7 @@ class ImageSlider extends Component {
     const { currentImage } = this.state;
     return (
       <div>
-        <img className="background-image" src={currentImage} />
+        <img className="background-image" src={currentImage} alt="" />
       </div>
     );
   }
