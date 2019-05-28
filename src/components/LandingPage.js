@@ -35,10 +35,10 @@ class LandingPage extends Component {
     this.setState({ firstTimer: true, secondTimer: false, thirdTimer: false });
     this.refs.imageSlider.startTimer();
 
-    if(this.state.firstTimer){
+    if (this.state.firstTimer) {
       this.refs.firstCountdown.resetTimer();
-    } 
-  }
+    }
+  };
 
   endFirstTimer = () => {
     this.setState({ firstTimer: false, secondTimer: true });
@@ -100,13 +100,24 @@ class LandingPage extends Component {
                     : "device-container__background-image-overlay--dark")
                 }
               />
-              <ImageSlider typeOfDay={isDark ? "light" : "dark"} ref="imageSlider"/>
+              <ImageSlider
+                typeOfDay={isDark ? "light" : "dark"}
+                ref="imageSlider"
+              />
               <div className="device-container__timers">
                 {firstTimer && (
-                  <Countdown duration={30000} endTimer={this.endFirstTimer} ref="firstCountdown" />
+                  <Countdown
+                    duration={30000}
+                    endTimer={this.endFirstTimer}
+                    ref="firstCountdown"
+                  />
                 )}
                 {secondTimer && (
-                  <Countdown duration={40000} endTimer={this.endSecondTimer} />
+                  <Countdown
+                    duration={40000}
+                    endTimer={this.endSecondTimer}
+                    isDay={isDark ? true : false}
+                  />
                 )}
                 {thirdTimer && (
                   <Countdown duration={50000} endTimer={this.endThirdTimer} />

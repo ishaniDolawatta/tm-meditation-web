@@ -51,18 +51,31 @@ class Countdown extends Component {
     const { timerTime, timerStart } = this.state;
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
-    let timeWeight = (((timerStart - timerTime) / timerStart) * 100).toFixed(3);
+    const durationInSeconds = this.props.duration / 1000;
+
+    const percentage = ((minutes * 60 + seconds) / durationInSeconds) * 100;
 
     return (
       <div className="countdown">
         <div className="countdown-display">
           <div className="countdown-time">
             <CircularProgressbar
-              value={timeWeight}
+              value={percentage}
               text={`${minutes} : ${seconds}`}
               strokeWidth={5}
+              styles={{
+                pathColor: `red`,
+                trail: {
+                  stroke: this.props.isDay ? "#8F8F8F" : "#E4E4E4"
+                },
+                path: {
+                  stroke: this.props.isDay ? "#4D4D4D" : "#676767"
+                },
+                text: {
+                  fill: this.props.isDay ? "#4D4D4D" : "#676767"
+                }
+              }}
             />
-            <p>{timeWeight}</p>
           </div>
         </div>
       </div>
