@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Countdown from "./timer/countdown/Countdown";
 import ImageSlider from "./image-slider/ImageSlider";
+import SoundPlayer from "./sound-player/SoundPlayer";
 import moment from "moment";
 
 import playIconDark from "../assets/icons/play-icon-dark.svg";
@@ -10,15 +11,15 @@ import device from "../assets/images/iphone.svg";
 import restartIcon from "../assets/icons/restart.svg";
 import playIconLight from "../assets/icons/play-icon-light.svg";
 import * as theme from "../config/constants/theme";
+import * as description from "../config/constants/description";
 
 import "./LandingPage.scss";
 
 class LandingPage extends Component {
   state = {
     currentTheme: this.getCurrentTheme(),
-    firstTimer: false,
-    secondTimer: false,
-    thirdTimer: false
+    isTimerOn: false,
+    isSoundOn: false
   };
 
   componentDidMount() {
@@ -71,24 +72,33 @@ class LandingPage extends Component {
   }
 
   startTimer = () => {
-    this.setState({ firstTimer: true, secondTimer: false, thirdTimer: false });
-    this.refs.imageSlider.startTimer();
+    this.setState(
+      {
+        isTimerOn: true,
+        isSoundOn: false
+      },
+      () => {
+        this.refs.imageSlider.resetTimer();
+        this.refs.countdown.resetTimer();
+      }
+    );
+  };
 
-    if (this.state.firstTimer) {
-      this.refs.firstCountdown.resetTimer();
+  changeTimerSession = session => {
+    if (session === 3) {
+      this.setState({
+        isTimerOn: false
+      });
+    } else {
+      this.setState(
+        {
+          isSoundOn: true
+        },
+        () => {
+          this.refs.countdown.startTimer();
+        }
+      );
     }
-  };
-
-  endFirstTimer = () => {
-    this.setState({ firstTimer: false, secondTimer: true });
-  };
-
-  endSecondTimer = () => {
-    this.setState({ secondTimer: false, thirdTimer: true });
-  };
-
-  endThirdTimer = () => {
-    this.setState({ thirdTimer: false });
   };
 
   calculateDuration = (min, sec) => {
@@ -96,7 +106,7 @@ class LandingPage extends Component {
   };
 
   render() {
-    const { firstTimer, secondTimer, thirdTimer, currentTheme } = this.state;
+    const { isTimerOn, currentTheme, isSoundOn } = this.state;
     const isDark = currentTheme === theme.THEME_TYPE_NIGHT;
 
     return (
@@ -105,77 +115,64 @@ class LandingPage extends Component {
           isDark ? "main-container--dark" : "main-container--light"
         }`}
       >
-        <div className="row">
-          <div className="col-md-6">
-            <div className="description-container">
-              <div>
-                <p className="description-container__main-description mb-0">
-                  Blackbird TM Timer is a simplistic timer for all of you doing
-                  Trancendental Meditation.
-                </p>
-                <p className="description-container__main-description">
-                  With creative energy from learning TM in Rishikesh in 1968
-                  Paul McCartney composed the simple and beautiful song
-                  Blackbird.
-                </p>
+        <div className="container main-wrapper">
+          <div className="description-container">
+            <div className="description-container__description-wrapper">
+              <p className=" mb-0">{description.FIRST_DESCRIPTION}</p>
+              <p>{description.SECOND_DESCRIPTION}</p>
 
-                <div className="mt-4 ml-2">
-                  <img src={isDark ? playIconDark : playIconLight} />
-                </div>
-                <p className="description-container__main-description mt-3">
-                  Please try the timer here or download it on Appstore and
-                  Google play.
-                </p>
+              <div className="ml-2">
+                <a
+                  target="_blank"
+                  href="https://open.spotify.com/track/1yyoXvegrF9Q0PIL0eLPDU?si=P7U0WS2nSGaRjJjUgJuoZQ"
+                >
+                  <img src={isDark ? playIconDark : playIconLight} alt="" />
+                </a>
               </div>
-              <div className="description-container__app-links mt-5 ">
-                <img src={googlePlay} />
-                <img src={appStore} />
-              </div>
+              <p className="mt-3">{description.APP_LINKS_DESCRIPTION}</p>
+            </div>
+            <div className="description-container__app-links  ">
+              <img src={googlePlay} alt="" />
+              <img src={appStore} alt="" />
             </div>
           </div>
-          <div className="col-md-6">
-            <div className="device-container">
-              <img className="device-container__device-frame" src={device} />
-              <div
-                className={
-                  "device-container__background-image-overlay " +
-                  (isDark
-                    ? "device-container__background-image-overlay--light"
-                    : "device-container__background-image-overlay--dark")
-                }
+
+          <div className="device-container">
+            <div className="device-wrapper">
+              <img
+                className="device-wrapper__device-frame"
+                src={device}
+                alt=""
               />
               <ImageSlider
                 typeOfDay={isDark ? "light" : "dark"}
                 ref="imageSlider"
               />
-
-              <div className="device-container__timers">
-                {firstTimer && (
-                  <Countdown
-                    duration={this.calculateDuration(0, 30)}
-                    endTimer={this.endFirstTimer}
-                    ref="firstCountdown"
-                  />
-                )}
-                {secondTimer && (
-                  <Countdown
-                    showProgressBar
-                    duration={this.calculateDuration(20, 0)}
-                    endTimer={this.endSecondTimer}
-                  />
-                )}
-                {thirdTimer && (
-                  <Countdown
-                    duration={this.calculateDuration(2, 0)}
-                    endTimer={this.endThirdTimer}
-                  />
-                )}
-              </div>
+              <div
+                className={
+                  "device-wrapper__background-image-overlay " +
+                  (isDark
+                    ? "device-wrapper__background-image-overlay--light"
+                    : "device-wrapper__background-image-overlay--dark")
+                }
+              />
               <img
-                className="device-container__restart-icon"
+                className="device-wrapper__restart-icon"
                 src={restartIcon}
                 onClick={this.startTimer}
+                alt=""
               />
+
+              <div className="device-wrapper__timers">
+                {isTimerOn && (
+                  <Countdown
+                    duration={this.calculateDuration(22, 30)}
+                    changeTimerSession={this.changeTimerSession}
+                    ref="countdown"
+                  />
+                )}
+                {isSoundOn && <SoundPlayer />}
+              </div>
             </div>
           </div>
         </div>

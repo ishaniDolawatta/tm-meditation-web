@@ -87,6 +87,11 @@ class ImageSlider extends Component {
       );
     }
 
+    images = this.shuffleImages(images);
+    return images.splice(0, this.shuffleImageCount);
+  };
+
+  shuffleImages(images) {
     images.forEach((image, index) => {
       let randomIndex = Math.floor(Math.random() * (index + 1));
       let itemAtIndex = images[randomIndex];
@@ -94,14 +99,14 @@ class ImageSlider extends Component {
       images[randomIndex] = images[index];
       images[index] = itemAtIndex;
     });
-    return images.splice(0, this.shuffleImageCount);
-  };
+    return images;
+  }
 
   render() {
     const { currentImage } = this.state;
     return (
       <div>
-        <img className="background-image" src={currentImage} />
+        <img className="background-image" src={currentImage} alt="" />
       </div>
     );
   }
