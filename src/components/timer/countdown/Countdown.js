@@ -11,9 +11,9 @@ class Countdown extends Component {
     currentsessionIndex: 0
   };
 
-  firstSessionTimeOut = this.calculateDuration(0, 5);
-  secondSessionTimeOut = this.calculateDuration(0, 6);
-  thirdSessionTimeOut = this.calculateDuration(0, 8);
+  firstSessionTimeOut = this.calculateDuration(0, 30);
+  secondSessionTimeOut = this.calculateDuration(20, 0);
+  thirdSessionTimeOut = this.calculateDuration(2, 0);
 
   sessions = [
     this.firstSessionTimeOut,
@@ -22,8 +22,7 @@ class Countdown extends Component {
   ];
 
   startTimer = () => {
-    console.log("b");
-    
+
     this.setState({
       timerOn: true,
       timerTime: this.sessions[this.state.currentsessionIndex],
@@ -46,7 +45,7 @@ class Countdown extends Component {
     clearInterval(this.timer);
     this.setState(
       {
-        currentsessionIndex: (this.state.currentsessionIndex += 1),
+        currentsessionIndex: (this.state.currentsessionIndex + 1),
         timerOn: false
       },
       () => {
@@ -75,13 +74,13 @@ class Countdown extends Component {
   }
 
   render() {
-    const { timerTime, currentsessionIndex } = this.state;
-    const  showProgressBar  = currentsessionIndex === 1;
+    const { timerTime, timerStart, currentsessionIndex } = this.state;
+    const showProgressBar = currentsessionIndex === 1;
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
-    const durationInSeconds = this.props.duration / 1000;
 
-    const percentage = ((minutes * 60) / durationInSeconds) * 100;
+
+    const percentage = currentsessionIndex === 1 ? ((timerStart - timerTime) / timerStart) * 100 : 0;
 
     return (
       <div className="countdown">
@@ -89,20 +88,20 @@ class Countdown extends Component {
           <div
             className={`countdown-time ${
               showProgressBar ? "countdown-time__show-progress-bar" : ""
-            }`}
+              }`}
           >
             <CircularProgressbar
               value={percentage}
               text={`${minutes} : ${seconds}`}
               styles={{
                 trail: {
-                  stroke: this.props.isDark ? "#676767" : "#8F8F8F"
-                },
-                path: {
                   stroke: this.props.isDark ? "#E4E4E4" : "#4D4D4D"
                 },
+                path: {
+                  stroke: this.props.isDark ? "#676767" : "#8F8F8F"
+                },
                 text: {
-                  fill: this.props.isDark ? "#E4E4E4" : "#4D4D4D"
+                  fill: this.props.isDark ? "#4D4D4D" : "#E4E4E4"
                 }
               }}
             />
