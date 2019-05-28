@@ -16,9 +16,7 @@ import "./LandingPage.scss";
 class LandingPage extends Component {
   state = {
     currentTheme: this.getCurrentTheme(),
-    firstTimer: false,
-    secondTimer: false,
-    thirdTimer: false
+    isTimerOn: false
   };
 
   componentDidMount() {
@@ -71,24 +69,25 @@ class LandingPage extends Component {
   }
 
   startTimer = () => {
-    this.setState({ firstTimer: true, secondTimer: false, thirdTimer: false });
-    this.refs.imageSlider.startTimer();
+    this.setState(
+      {
+        isTimerOn: true
+      },
+      () => {
+        this.refs.imageSlider.resetTimer();
+        this.refs.countdown.resetTimer();
+      }
+    );
+  };
 
-    if (this.state.firstTimer) {
-      this.refs.firstCountdown.resetTimer();
+  changeTimerSession = session => {
+    if (session === 3) {
+      this.setState({
+        isTimerOn: false
+      });
+    } else {
+      this.refs.countdown.startTimer();
     }
-  };
-
-  endFirstTimer = () => {
-    this.setState({ firstTimer: false, secondTimer: true });
-  };
-
-  endSecondTimer = () => {
-    this.setState({ secondTimer: false, thirdTimer: true });
-  };
-
-  endThirdTimer = () => {
-    this.setState({ thirdTimer: false });
   };
 
   calculateDuration = (min, sec) => {
@@ -96,7 +95,7 @@ class LandingPage extends Component {
   };
 
   render() {
-    const { firstTimer, secondTimer, thirdTimer, currentTheme } = this.state;
+    const { isTimerOn, currentTheme } = this.state;
     const isDark = currentTheme === theme.THEME_TYPE_NIGHT;
 
     return (
@@ -150,24 +149,11 @@ class LandingPage extends Component {
               />
 
               <div className="device-container__timers">
-                {firstTimer && (
+                {isTimerOn && (
                   <Countdown
-                    duration={this.calculateDuration(0, 30)}
-                    endTimer={this.endFirstTimer}
-                    ref="firstCountdown"
-                  />
-                )}
-                {secondTimer && (
-                  <Countdown
-                    showProgressBar
-                    duration={this.calculateDuration(20, 0)}
-                    endTimer={this.endSecondTimer}
-                  />
-                )}
-                {thirdTimer && (
-                  <Countdown
-                    duration={this.calculateDuration(2, 0)}
-                    endTimer={this.endThirdTimer}
+                    duration={this.calculateDuration(22, 30)}
+                    changeTimerSession={this.changeTimerSession}
+                    ref="countdown"
                   />
                 )}
               </div>

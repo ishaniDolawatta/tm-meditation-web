@@ -7,45 +7,70 @@ class Countdown extends Component {
   state = {
     timerOn: false,
     timerStart: 0,
-    timerTime: 0
+    timerTime: 0,
+    currentsessionIndex: 0
   };
 
-  componentDidMount() {
-    this.startTimer();
-  }
+  firstSessionTimeOut = this.calculateDuration(0, 5);
+  secondSessionTimeOut = this.calculateDuration(0, 6);
+  thirdSessionTimeOut = this.calculateDuration(0, 8);
+
+  sessions = [
+    this.firstSessionTimeOut,
+    this.secondSessionTimeOut,
+    this.thirdSessionTimeOut
+  ];
 
   startTimer = () => {
     this.setState({
       timerOn: true,
-      timerTime: this.props.duration,
-      timerStart: this.props.duration
+      timerTime: this.sessions[this.state.currentsessionIndex],
+      timerStart: this.sessions[this.state.currentsessionIndex]
     });
 
     this.timer = setInterval(() => {
-      const newTime = this.state.timerTime - 10;
+      const newTime = this.state.timerTime - 1000;
       if (newTime >= 0) {
         this.setState({
           timerTime: newTime
         });
       } else {
-        clearInterval(this.timer);
-        this.setState({ timerOn: false });
         this.stopTimer();
       }
-    }, 10);
+    }, 1000);
   };
 
   stopTimer = () => {
     clearInterval(this.timer);
-    this.setState({ timerOn: false });
-    this.props.endTimer();
+    this.setState(
+      {
+        currentsessionIndex: (this.state.currentsessionIndex += 1),
+        timerOn: false
+      },
+      () => {
+        if (this.sessions.length + 1 > this.state.currentsessionIndex) {
+          this.props.changeTimerSession(this.state.currentsessionIndex);
+        }
+      }
+    );
   };
 
   resetTimer = () => {
-    this.setState({
-      timerTime: this.state.timerStart
-    });
+    clearInterval(this.timer);
+    this.setState(
+      {
+        timerOn: true,
+        currentsessionIndex: 0
+      },
+      () => {
+        this.startTimer();
+      }
+    );
   };
+
+  calculateDuration(min, sec) {
+    return min * 60000 + sec * 1000;
+  }
 
   render() {
     const { timerTime, timerStart } = this.state;
