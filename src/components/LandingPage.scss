@@ -42,18 +42,45 @@
     position: relative;
     margin-top: 16%;
     margin-left: 20%;
+    max-width: fit-content;
+    background-size: cover;
+    border-radius: 50px;
 
     &__timers {
       position: absolute;
       width: 960px;
       top: 140px;
       left: 44px;
+      z-index: 50;
     }
 
     &__restart-icon {
       position: absolute;
       top: 420px;
       left: 120px;
+      z-index: 101;
+    }
+
+    &__device-frame {
+      position: absolute;
+      z-index: 100;
+    }
+
+    &__background-image-overlay {
+      position: absolute;
+      width: 240px;
+      height: 520px;
+      left: 18px;
+      top: 16px;
+      z-index: 20;
+
+      &--light {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+
+      &--dark {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
     }
   }
 }

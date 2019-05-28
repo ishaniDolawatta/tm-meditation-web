@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import LandingPage from "./components/LandingPage";
-import './App.scss';
-
+import "./App.scss";
 
 class App extends Component {
-render() {
-  return (
-    <div>
-       <LandingPage/>
-    </div>
-     
+  render() {
+    return (
+      <div>
+        <LandingPage />
+      </div>
     );
   }
 }
