@@ -6,6 +6,23 @@
   font-family: ArialRoundedMTBold;
 }
 
+.CircularProgressbar-path {
+  stroke-width: 0;
+}
+
+.CircularProgressbar-trail {
+  stroke-width: 0;
+}
+
+.countdown-time__show-progress-bar {
+  .CircularProgressbar-path {
+    stroke-width: 3;
+  }
+
+  .CircularProgressbar-trail {
+    stroke-width: 3;
+  }
+}
 .CircularProgressbar-background {
   fill-opacity: 0;
 }

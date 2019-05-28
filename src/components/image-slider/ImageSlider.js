@@ -30,7 +30,6 @@ class ImageSlider extends Component {
   }
 
   startTimer = () => {
-    console.log("b");
     this.setState({
       timerOn: true,
       timerTime: this.state.timerTime,
@@ -102,7 +101,7 @@ class ImageSlider extends Component {
     const { currentImage } = this.state;
     return (
       <div>
-        <img className="background-image" src={currentImage} />
+        <img className="background-image" src={currentImage} alt="" />
       </div>
     );
   }
