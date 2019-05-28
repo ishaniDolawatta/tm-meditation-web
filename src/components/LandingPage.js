@@ -62,51 +62,54 @@ class LandingPage extends Component {
           isDark ? "main-container--light" : "main-container--dark"
         }`}
       >
-        <div className="row">
-          <div className="col-md-6">
-            <div className="description-container">
-              <div>
-                <p className="description-container__main-description mb-0">
-                  Blackbird TM Timer is a simplistic timer for all of you doing
-                  Trancendental Meditation.
-                </p>
-                <p className="description-container__main-description">
-                  With creative energy from learning TM in Rishikesh in 1968
-                  Paul McCartney composed the simple and beautiful song
-                  Blackbird.
-                </p>
+        <div className="container main-wrapper">
+          <div className="description-container">
+            <div className="description-container__description-wrapper">
+              <p className=" mb-0">
+                Blackbird TM Timer is a simplistic timer for all of you doing
+                Trancendental Meditation.
+              </p>
+              <p>
+                With creative energy from learning TM in Rishikesh in 1968 Paul
+                McCartney composed the simple and beautiful song Blackbird.
+              </p>
 
-                <div className="mt-4 ml-2">
-                  <img src={isDark ? playIconLight : playIconDark} />
-                </div>
-                <p className="description-container__main-description mt-3">
-                  Please try the timer here or download it on Appstore and
-                  Google play.
-                </p>
+              <div className="ml-2">
+                <img src={isDark ? playIconLight : playIconDark} />
               </div>
-              <div className="description-container__app-links mt-5 ">
-                <img src={googlePlay} />
-                <img src={appStore} />
-              </div>
+              <p className="mt-3">
+                Please try the timer here or download it on Appstore and Google
+                play.
+              </p>
+            </div>
+            <div className="description-container__app-links mt-5 ">
+              <img src={googlePlay} />
+              <img src={appStore} />
             </div>
           </div>
-          <div className="col-md-6">
-            <div className="device-container">
-              <img className="device-container__device-frame" src={device} />
-              <div
-                className={
-                  "device-container__background-image-overlay " +
-                  (isDark
-                    ? "device-container__background-image-overlay--dark"
-                    : "device-container__background-image-overlay--light")
-                }
-              />
+
+          <div className="device-container">
+            <div className="device-wrapper">
+              <img className="device-wrapper__device-frame" src={device} />
               <ImageSlider
                 typeOfDay={isDark ? "dark" : "light"}
                 ref="imageSlider"
               />
+              <div
+                className={
+                  "device-wrapper__background-image-overlay " +
+                  (isDark
+                    ? "device-wrapper__background-image-overlay--dark"
+                    : "device-wrapper__background-image-overlay--light")
+                }
+              />
+              <img
+                className="device-wrapper__restart-icon"
+                src={restartIcon}
+                onClick={this.startTimer}
+              />
 
-              <div className="device-container__timers">
+              <div className="device-wrapper__timers">
                 {firstTimer && (
                   <Countdown
                     duration={30000}
@@ -125,11 +128,6 @@ class LandingPage extends Component {
                   <Countdown duration={50000} endTimer={this.endThirdTimer} />
                 )}
               </div>
-              <img
-                className="device-container__restart-icon"
-                src={restartIcon}
-                onClick={this.startTimer}
-              />
             </div>
           </div>
         </div>
