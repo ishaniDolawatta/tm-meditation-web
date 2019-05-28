@@ -84,3 +84,54 @@
     }
   }
 }
+@media only screen and (min-width : 768px) and (max-width : 1024px)  and (orientation : portrait) {
+  .main-container {
+    .description-container {
+      left: 10vw;
+      width: 30vw;
+      top: 14vh;
+
+      &__app-links {
+        padding-top:80px;
+        padding-left: 100px;
+        min-width: 500px;
+        justify-content: space-between
+      }
+      &__main-description {
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+
+    .device-container {
+      margin-top: 46%;
+      margin-left: 4%;
+    }
+  }
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1024px)  and (orientation : landscape) {
+  .main-container {
+    .description-container {
+      left: 10vw;
+      width: 30vw;
+      top: 14vh;
+
+      &__app-links {
+        padding-top:26px;
+        padding-left: 10px;
+        min-width: 300px;
+        justify-content: space-between
+      }
+      &__main-description {
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+
+    .device-container {
+      margin-top: 12%;
+      margin-left: 6%;
+    }
+  }
+}
