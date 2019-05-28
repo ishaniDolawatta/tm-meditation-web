@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Countdown from "./timer/countdown/Countdown";
 import ImageSlider from "./image-slider/ImageSlider";
+import MiniCountDown from "./timer/miniCountDown/MiniCountDown";
 
 import playIconDark from "../assets/icons/play-icon-dark.svg";
 import googlePlay from "../assets/images/google-play.svg";
@@ -35,10 +36,10 @@ class LandingPage extends Component {
     this.setState({ firstTimer: true, secondTimer: false, thirdTimer: false });
     this.refs.imageSlider.startTimer();
 
-    if(this.state.firstTimer){
+    if (this.state.firstTimer) {
       this.refs.firstCountdown.resetTimer();
-    } 
-  }
+    }
+  };
 
   endFirstTimer = () => {
     this.setState({ firstTimer: false, secondTimer: true });
@@ -55,6 +56,7 @@ class LandingPage extends Component {
   render() {
     const { firstTimer, secondTimer, thirdTimer, currentTime } = this.state;
     const isDark = currentTime < 18;
+
     return (
       <div
         className={`main-container ${
@@ -100,10 +102,18 @@ class LandingPage extends Component {
                     : "device-container__background-image-overlay--light")
                 }
               />
-              <ImageSlider typeOfDay={isDark ? "dark" : "light"} ref="imageSlider"/>
+              <ImageSlider
+                typeOfDay={isDark ? "dark" : "light"}
+                ref="imageSlider"
+              />
+              <MiniCountDown date={"2019-06-29T00:00:00"} />
               <div className="device-container__timers">
                 {firstTimer && (
-                  <Countdown duration={30000} endTimer={this.endFirstTimer} ref="firstCountdown" />
+                  <Countdown
+                    duration={30000}
+                    endTimer={this.endFirstTimer}
+                    ref="firstCountdown"
+                  />
                 )}
                 {secondTimer && (
                   <Countdown duration={40000} endTimer={this.endSecondTimer} />
