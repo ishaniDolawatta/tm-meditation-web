@@ -106,53 +106,56 @@ class LandingPage extends Component {
           isDark ? "main-container--dark" : "main-container--light"
         }`}
       >
-        <div className="row">
-          <div className="col-md-6">
-            <div className="description-container">
-              <div>
-                <p className="description-container__main-description mb-0">
-                  {description.FIRST_DESCRIPTION}
-                </p>
-                <p className="description-container__main-description">
-                  {description.SECOND_DESCRIPTION}
-                </p>
+        <div className="container main-wrapper">
+          <div className="description-container">
+            <div className="description-container__description-wrapper">
+              <p className=" mb-0">{description.FIRST_DESCRIPTION}</p>
+              <p>{description.SECOND_DESCRIPTION}</p>
 
-                <div className="mt-4 ml-2">
-                  <img src={isDark ? playIconDark : playIconLight} />
-                </div>
-
-                <p className="description-container__main-description mt-3">
-                  {description.APP_LINKS_DESCRIPTION}
-                </p>
+              <div className="ml-2">
+                <img src={isDark ? playIconDark : playIconLight} alt="" />
               </div>
-              <div className="description-container__app-links mt-5 ">
-                <img src={googlePlay} />
-                <img src={appStore} />
-              </div>
+              <p className="mt-3">{description.APP_LINKS_DESCRIPTION}</p>
+            </div>
+            <div className="description-container__app-links  ">
+              <img src={googlePlay} alt="" />
+              <img src={appStore} alt="" />
             </div>
           </div>
-          <div className="col-md-6">
-            <div className="device-container">
-              <img className="device-container__device-frame" src={device} />
-              <div
-                className={
-                  "device-container__background-image-overlay " +
-                  (isDark
-                    ? "device-container__background-image-overlay--light"
-                    : "device-container__background-image-overlay--dark")
-                }
+
+          <div className="device-container">
+            <div className="device-wrapper">
+              <img
+                className="device-wrapper__device-frame"
+                src={device}
+                alt=""
               />
               <ImageSlider
                 typeOfDay={isDark ? "light" : "dark"}
                 ref="imageSlider"
               />
+              <div
+                className={
+                  "device-wrapper__background-image-overlay " +
+                  (isDark
+                    ? "device-wrapper__background-image-overlay--light"
+                    : "device-wrapper__background-image-overlay--dark")
+                }
+              />
+              <img
+                className="device-wrapper__restart-icon"
+                src={restartIcon}
+                onClick={this.startTimer}
+                alt=""
+              />
 
-              <div className="device-container__timers">
+              <div className="device-wrapper__timers">
                 {firstTimer && (
                   <Countdown
                     duration={this.calculateDuration(0, 30)}
                     endTimer={this.endFirstTimer}
                     ref="firstCountdown"
+                    isDark
                   />
                 )}
                 {secondTimer && (
@@ -160,20 +163,17 @@ class LandingPage extends Component {
                     showProgressBar
                     duration={this.calculateDuration(20, 0)}
                     endTimer={this.endSecondTimer}
+                    isDark
                   />
                 )}
                 {thirdTimer && (
                   <Countdown
                     duration={this.calculateDuration(2, 0)}
                     endTimer={this.endThirdTimer}
+                    isDark
                   />
                 )}
               </div>
-              <img
-                className="device-container__restart-icon"
-                src={restartIcon}
-                onClick={this.startTimer}
-              />
             </div>
           </div>
         </div>

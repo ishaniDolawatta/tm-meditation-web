@@ -4,11 +4,7 @@ import "./App.scss";
 
 class App extends Component {
   render() {
-    return (
-      <div>
-        <LandingPage />
-      </div>
-    );
+    return <LandingPage />;
   }
 }
 
