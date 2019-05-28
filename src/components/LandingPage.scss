@@ -110,7 +110,7 @@
   }
 }
 
-@media only screen and (min-width : 768px) and (max-width : 1024px)  and (orientation : landscape) {
+@media only screen and (min-width : 768px) and (max-width : 1024px)  and (orientation : portrait) {
   .main-container {
     .description-container {
       left: 10vw;
@@ -132,6 +132,84 @@
     .device-container {
       margin-top: 12%;
       margin-left: 6%;
+    }
+  }
+}
+
+@media only screen and (max-width : 1024px) and (max-height : 1024px)  and (orientation : landscape) {
+  .main-container {
+    .description-container {
+      left: 10vw;
+      width: 30vw;
+      top: 14vh;
+
+      &__app-links {
+        padding-top:26px;
+        padding-left: 10px;
+        min-width: 300px;
+        justify-content: space-between
+      }
+      &__main-description {
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+
+    .device-container {
+      margin-top: 12%;
+      margin-left: 6%;
+    }
+  }
+}
+
+@media only screen and (max-width : 1024px) and (max-height : 1366px)  and (orientation : portrait) {
+  .main-container {
+    .description-container {
+      left: 10vw;
+      width: 36vw;
+      top: 14vh;
+
+      &__app-links {
+        padding-top:26px;
+        padding-left: 10px;
+        min-width: 300px;
+        justify-content: space-between
+      }
+      &__main-description {
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+
+    .device-container {
+      margin-top: 30%;
+      margin-left: 20%;
+    }
+  }
+}
+
+@media only screen and (max-width : 1366px) and (max-height : 1024px)  and (orientation : landscape) {
+  .main-container {
+    .description-container {
+      left: 10vw;
+      width: 36vw;
+      top: 18vh;
+
+      &__app-links {
+        padding-top:26px;
+        padding-left: 10px;
+        min-width: 300px;
+        justify-content: space-between
+      }
+      &__main-description {
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+
+    .device-container {
+      margin-top: 20%;
+      margin-left: 20%;
     }
   }
 }
