@@ -160,7 +160,7 @@ class LandingPage extends Component {
               <div className="device-wrapper__timers">
                 {firstTimer && (
                   <Countdown
-                    duration={this.calculateDuration(0, 3)}
+                    duration={this.calculateDuration(0, 30)}
                     endTimer={this.endFirstTimer}
                     ref="firstCountdown"
                     isDark
