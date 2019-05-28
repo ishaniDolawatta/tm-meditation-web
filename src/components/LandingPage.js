@@ -117,7 +117,7 @@ class LandingPage extends Component {
               </div>
               <p className="mt-3">{description.APP_LINKS_DESCRIPTION}</p>
             </div>
-            <div className="description-container__app-links mt-5 ">
+            <div className="description-container__app-links  ">
               <img src={googlePlay} alt="" />
               <img src={appStore} alt="" />
             </div>

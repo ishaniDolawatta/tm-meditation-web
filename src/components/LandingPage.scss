@@ -42,6 +42,7 @@
       justify-content: space-around;
       width: 75%;
       cursor: pointer;
+      margin-top: 70px;
     }
   }
 
@@ -104,6 +105,14 @@
         img {
           margin-bottom: 10px;
         }
+      }
+    }
+  }
+
+  @media (width: 320px) {
+    .description-container {
+      &__app-links {
+        margin-top: 20px;
       }
     }
   }
