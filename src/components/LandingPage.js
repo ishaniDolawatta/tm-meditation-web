@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Countdown from "./timer/countdown/Countdown";
 import ImageSlider from "./image-slider/ImageSlider";
-import MiniCountDown from "./timer/miniCountDown/MiniCountDown";
 
 import playIconDark from "../assets/icons/play-icon-dark.svg";
 import googlePlay from "../assets/images/google-play.svg";
@@ -106,7 +105,7 @@ class LandingPage extends Component {
                 typeOfDay={isDark ? "dark" : "light"}
                 ref="imageSlider"
               />
-              <MiniCountDown date={"2019-06-29T00:00:00"} />
+
               <div className="device-container__timers">
                 {firstTimer && (
                   <Countdown
@@ -116,7 +115,11 @@ class LandingPage extends Component {
                   />
                 )}
                 {secondTimer && (
-                  <Countdown duration={40000} endTimer={this.endSecondTimer} />
+                  <Countdown
+                    showProgressBar
+                    duration={40000}
+                    endTimer={this.endSecondTimer}
+                  />
                 )}
                 {thirdTimer && (
                   <Countdown duration={50000} endTimer={this.endThirdTimer} />
