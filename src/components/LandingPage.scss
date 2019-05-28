@@ -117,3 +117,43 @@
     }
   }
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .main-container {
+    .description-container p {
+      line-height: 26px;
+    }
+    .description-container__app-links {
+      min-width: 340px;
+      margin-top: 60px;
+    }
+    .description-container {
+      margin-top: 140px;
+    }
+    .device-container {
+      .device-wrapper {
+        margin-left: 40px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .main-container {
+    .description-container p {
+      line-height: 30px;
+    }
+    .description-container__app-links {
+      min-width: 340px;
+      margin-top: 60px;
+    }
+    .description-container {
+      margin-top: 140px;
+    }
+    .device-container {
+      .device-wrapper {
+        margin-left: 70px;
+      }
+    }
+  }
+}
