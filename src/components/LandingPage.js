@@ -54,7 +54,7 @@ class LandingPage extends Component {
 
   render() {
     const { firstTimer, secondTimer, thirdTimer, currentTime } = this.state;
-    const isDark = currentTime < 18;
+    const isDark = currentTime > 18;
 
     return (
       <div
