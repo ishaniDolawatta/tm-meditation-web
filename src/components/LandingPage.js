@@ -78,7 +78,7 @@ class LandingPage extends Component {
         isSoundOn: true
       },
       () => {
-        this.refs.imageSlider.resetTimer();
+        this.refs.imageSlider.startTimer();
         this.refs.countdown.resetTimer();
       }
     );
