@@ -30,7 +30,6 @@ class ImageSlider extends Component {
   }
 
   startTimer = () => {
-    console.log("b");
     this.setState({
       timerOn: true,
       timerTime: this.state.timerTime,
