@@ -22,7 +22,6 @@ class Countdown extends Component {
   ];
 
   startTimer = () => {
-
     this.setState({
       timerOn: true,
       timerTime: this.sessions[this.state.currentsessionIndex],
@@ -45,7 +44,7 @@ class Countdown extends Component {
     clearInterval(this.timer);
     this.setState(
       {
-        currentsessionIndex: (this.state.currentsessionIndex + 1),
+        currentsessionIndex: this.state.currentsessionIndex + 1,
         timerOn: false
       },
       () => {
@@ -79,8 +78,10 @@ class Countdown extends Component {
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
 
-
-    const percentage = currentsessionIndex === 1 ? ((timerStart - timerTime) / timerStart) * 100 : 0;
+    const percentage =
+      currentsessionIndex === 1
+        ? ((timerStart - timerTime) / timerStart) * 100
+        : 0;
 
     return (
       <div className="countdown">
@@ -88,7 +89,7 @@ class Countdown extends Component {
           <div
             className={`countdown-time ${
               showProgressBar ? "countdown-time__show-progress-bar" : ""
-              }`}
+            }`}
           >
             <CircularProgressbar
               value={percentage}
