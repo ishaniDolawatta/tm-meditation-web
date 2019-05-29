@@ -168,6 +168,7 @@ class LandingPage extends Component {
                   <Countdown
                     duration={this.calculateDuration(22, 30)}
                     changeTimerSession={this.changeTimerSession}
+                    isDark={isDark}
                     ref="countdown"
                   />
                 )}
