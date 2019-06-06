@@ -124,7 +124,7 @@ class LandingPage extends Component {
               <div className="ml-2">
                 <a
                   target="_blank"
-                  href="https://open.spotify.com/track/1yyoXvegrF9Q0PIL0eLPDU?si=P7U0WS2nSGaRjJjUgJuoZQ"
+                  href="https://open.spotify.com/track/2oMVSmJx1l2FVXjVbx5DTc?si=Mo6Nb5rLQ5a_maumAOvzMg"
                 >
                   <img src={isDark ? playIconDark : playIconLight} alt="" />
                 </a>

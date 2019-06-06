@@ -1,5 +1,9 @@
 .CircularProgressbar {
-  width: 30% !important;
+  width: 33% !important;
+
+  .CircularProgressbar-text {
+    font-size: 16px;
+  }
 }
 
 .CircularProgressbar-text {
@@ -16,11 +20,11 @@
 
 .countdown-time__show-progress-bar {
   .CircularProgressbar-path {
-    stroke-width: 3;
+    stroke-width: 4.2;
   }
 
   .CircularProgressbar-trail {
-    stroke-width: 3;
+    stroke-width: 2;
   }
 }
 .CircularProgressbar-background {
