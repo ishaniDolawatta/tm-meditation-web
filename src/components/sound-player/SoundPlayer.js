@@ -3,7 +3,6 @@ import sound from "../../assets/sounds/audio.mp3";
 import Sound from "react-sound";
 
 class SoundPlayer extends Component {
-  
   render() {
     return (
       <Sound
