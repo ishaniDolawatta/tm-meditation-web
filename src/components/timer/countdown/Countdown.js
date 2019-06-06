@@ -45,7 +45,7 @@ class Countdown extends Component {
     clearInterval(this.timer);
     this.setState(
       {
-        currentsessionIndex: (this.state.currentsessionIndex + 1),
+        currentsessionIndex: this.state.currentsessionIndex + 1,
         timerOn: false
       },
       () => {
@@ -79,8 +79,10 @@ class Countdown extends Component {
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
 
-
-    const percentage = currentsessionIndex === 1 ? ((timerStart - timerTime) / timerStart) * 100 : 0;
+    const percentage =
+      currentsessionIndex === 1
+        ? ((timerStart - timerTime) / timerStart) * 100
+        : 0;
 
     return (
       <div className="countdown">
@@ -95,13 +97,13 @@ class Countdown extends Component {
               text={`${minutes} : ${seconds}`}
               styles={{
                 trail: {
-                  stroke: this.props.isDark ? "#E4E4E4" : "#4D4D4D"
+                  stroke: this.props.isDark ? "#8F8F8F": "#676767"
                 },
                 path: {
-                  stroke: this.props.isDark ? "#676767" : "#8F8F8F"
+                  stroke: this.props.isDark ? "#4D4D4D" : "#E4E4E4"
                 },
                 text: {
-                  fill: this.props.isDark ? "#4D4D4D" : "#E4E4E4"
+                  fill: this.props.isDark ? "#4D4D4D" : "#F3F3F3"
                 }
               }}
             />

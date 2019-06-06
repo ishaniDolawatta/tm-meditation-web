@@ -18,15 +18,16 @@ class ImageSlider extends Component {
   shuffleImageCount = 20;
 
   componentDidMount() {
-    this.setState({
-      imageList: this.getImages()
-    });
-
-    setTimeout(() => {
-      this.setState({
-        currentImage: this.state.imageList[0]
-      });
-    });
+    this.setState(
+      {
+        imageList: this.getImages()
+      },
+      () => {
+        this.setState({
+          currentImage: this.state.imageList[0]
+        });
+      }
+    );
   }
 
   startTimer = () => {

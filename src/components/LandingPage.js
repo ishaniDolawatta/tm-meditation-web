@@ -75,10 +75,10 @@ class LandingPage extends Component {
     this.setState(
       {
         isTimerOn: true,
-        isSoundOn: false
+        isSoundOn: true
       },
       () => {
-        this.refs.imageSlider.resetTimer();
+        this.refs.imageSlider.startTimer();
         this.refs.countdown.resetTimer();
       }
     );
@@ -168,6 +168,7 @@ class LandingPage extends Component {
                   <Countdown
                     duration={this.calculateDuration(22, 30)}
                     changeTimerSession={this.changeTimerSession}
+                    isDark={isDark}
                     ref="countdown"
                   />
                 )}
