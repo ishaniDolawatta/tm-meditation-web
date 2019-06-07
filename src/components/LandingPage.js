@@ -19,7 +19,8 @@ class LandingPage extends Component {
   state = {
     currentTheme: this.getCurrentTheme(),
     isTimerOn: false,
-    isSoundOn: false
+    isSoundOn: false,
+    sessionIndex: 0
   };
 
   componentDidMount() {
@@ -75,10 +76,11 @@ class LandingPage extends Component {
     this.setState(
       {
         isTimerOn: true,
-        isSoundOn: true
+        isSoundOn: true,
+        sessionIndex: this.state.sessionIndex + 1
       },
       () => {
-        this.refs.imageSlider.startTimer();
+        if (this.state.sessionIndex !== 1) this.refs.imageSlider.changeImage();
         this.refs.countdown.resetTimer();
       }
     );
@@ -90,6 +92,7 @@ class LandingPage extends Component {
         isTimerOn: false
       });
     } else {
+      this.refs.imageSlider.changeImage();
       this.setState(
         {
           isSoundOn: true
@@ -124,7 +127,8 @@ class LandingPage extends Component {
               <div className="ml-2">
                 <a
                   target="_blank"
-                  href="https://open.spotify.com/track/2oMVSmJx1l2FVXjVbx5DTc?si=Mo6Nb5rLQ5a_maumAOvzMg"
+                  rel="noopener noreferrer"
+                  href="https://open.spotify.com/track/1yyoXvegrF9Q0PIL0eLPDU?si=P7U0WS2nSGaRjJjUgJuoZQ"
                 >
                   <img src={isDark ? playIconDark : playIconLight} alt="" />
                 </a>
