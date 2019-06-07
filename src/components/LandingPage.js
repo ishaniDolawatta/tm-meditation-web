@@ -77,7 +77,7 @@ class LandingPage extends Component {
       {
         isTimerOn: true,
         isSoundOn: true,
-        sessionIndex: (this.state.sessionIndex += 1)
+        sessionIndex: this.state.sessionIndex + 1
       },
       () => {
         if (this.state.sessionIndex !== 1) this.refs.imageSlider.changeImage();
@@ -127,6 +127,7 @@ class LandingPage extends Component {
               <div className="ml-2">
                 <a
                   target="_blank"
+                  rel="noopener noreferrer"
                   href="https://open.spotify.com/track/1yyoXvegrF9Q0PIL0eLPDU?si=P7U0WS2nSGaRjJjUgJuoZQ"
                 >
                   <img src={isDark ? playIconDark : playIconLight} alt="" />

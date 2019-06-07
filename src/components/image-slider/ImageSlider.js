@@ -32,7 +32,7 @@ class ImageSlider extends Component {
   };
 
   changeImage = async () => {
-    this.imageCount = this.imageCount += 1;
+    this.imageCount = this.imageCount + 1;
     this.setState({
       currentImage: this.imageList[this.imageCount]
     });
