@@ -20,7 +20,7 @@ class ImageSlider extends Component {
     if (this.imageCount === this.imageList.length) {
       this.setImages();
     } else {
-      this.changeImage();
+      this.assignImage();
     }
   };
 
@@ -31,7 +31,7 @@ class ImageSlider extends Component {
     });
   };
 
-  changeImage = async () => {
+  assignImage = () => {
     this.imageCount = this.imageCount + 1;
     this.setState({
       currentImage: this.imageList[this.imageCount]
