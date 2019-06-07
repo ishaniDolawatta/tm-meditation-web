@@ -4,75 +4,37 @@ import "./ImageSlider.scss";
 
 class ImageSlider extends Component {
   state = {
-    imageList: [],
-    timerOn: false,
-    timerStart: 0,
-    timerTime: 0,
-    currentImage: "",
-    imageCount: 0
+    currentImage: ""
   };
 
-  duration = 1350000;
-  interval = 67500;
   initialImageount = 27;
   shuffleImageCount = 20;
+  imageList = [];
+  imageCount = 0;
 
   componentDidMount() {
-    this.setState(
-      {
-        imageList: this.getImages()
-      },
-      () => {
-        this.setState({
-          currentImage: this.state.imageList[0]
-        });
-      }
-    );
+    this.setImages();
   }
 
-  startTimer = () => {
+  changeImage = () => {
+    if (this.imageCount === this.imageList.length) {
+      this.setImages();
+    } else {
+      this.changeImage();
+    }
+  };
+
+  setImages = async () => {
+    this.imageList = await this.getImages();
     this.setState({
-      timerOn: true,
-      timerTime: this.state.timerTime,
-      timerStart: Date.now() - this.state.timerTime
+      currentImage: this.imageList[0]
     });
-
-    this.timer = setInterval(() => {
-      if (this.state.timerTime < this.duration) {
-        this.setState({
-          timerTime: Date.now() - this.state.timerStart
-        });
-
-        let currentImageCount = Math.floor(
-          this.state.timerTime / this.interval
-        );
-
-        if (currentImageCount !== this.state.imageCount) {
-          this.setState({
-            imageCount: currentImageCount,
-            currentImage: this.state.imageList[currentImageCount]
-          });
-        }
-      } else {
-        clearInterval(this.timer);
-        this.setState({ timerOn: false });
-        this.stopTimer();
-      }
-      this.setState({
-        timerTime: Date.now() - this.state.timerStart
-      });
-    }, 10);
   };
 
-  stopTimer = () => {
-    this.setState({ timerOn: false });
-    clearInterval(this.timer);
-  };
-
-  resetTimer = () => {
+  changeImage = async () => {
+    this.imageCount = this.imageCount += 1;
     this.setState({
-      timerStart: 0,
-      timerTime: 0
+      currentImage: this.imageList[this.imageCount]
     });
   };
 
