@@ -73,6 +73,7 @@ class LandingPage extends Component {
   }
 
   startTimer = () => {
+    if (this.state.sessionIndex + 1 !== 1) this.refs.imageSlider.changeImage();
     this.setState(
       {
         isTimerOn: true,
@@ -80,7 +81,6 @@ class LandingPage extends Component {
         sessionIndex: this.state.sessionIndex + 1
       },
       () => {
-        if (this.state.sessionIndex !== 1) this.refs.imageSlider.changeImage();
         this.refs.countdown.resetTimer();
       }
     );
@@ -92,7 +92,6 @@ class LandingPage extends Component {
         isTimerOn: false
       });
     } else {
-      this.refs.imageSlider.changeImage();
       this.setState(
         {
           isSoundOn: true
@@ -116,7 +115,7 @@ class LandingPage extends Component {
       <div
         className={`main-container ${
           isDark ? "main-container--dark" : "main-container--light"
-        }`}
+          }`}
       >
         <div className="container main-wrapper">
           <div className="description-container">
