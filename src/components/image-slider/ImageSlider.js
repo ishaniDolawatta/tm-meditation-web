@@ -42,7 +42,7 @@ class ImageSlider extends Component {
     let images = [];
     for (let index = 1; index < this.initialImageount; index++) {
       images.push(
-        "https://s3.us-east-2.amazonaws.com/tm-meditation/" +
+        "https://tm-meditation.s3.us-east-2.amazonaws.com/" +
           this.props.typeOfDay +
           "/" +
           index +
