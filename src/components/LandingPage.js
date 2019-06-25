@@ -64,8 +64,8 @@ class LandingPage extends Component {
   getCurrentTheme() {
     const now = moment();
     return now.isBetween(theme.DAY_TIME, theme.NIGHT_TIME)
-      ? theme.THEME_TYPE_DAY
-      : theme.THEME_TYPE_NIGHT;
+      ? theme.THEME_TYPE_NIGHT
+      : theme.THEME_TYPE_DAY;
   }
 
   clearDayNight() {
