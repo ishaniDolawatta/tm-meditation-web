@@ -11,6 +11,8 @@ import device from "../assets/images/iphone.svg";
 import restartIcon from "../assets/icons/restart.svg";
 import playIconLight from "../assets/icons/play-icon-light.svg";
 import * as theme from "../config/constants/theme";
+import * as playlist from "../config/constants/playlist";
+
 import * as description from "../config/constants/description";
 
 import "./LandingPage.scss";
@@ -115,7 +117,7 @@ class LandingPage extends Component {
       <div
         className={`main-container ${
           isDark ? "main-container--dark" : "main-container--light"
-          }`}
+        }`}
       >
         <div className="container main-wrapper">
           <div className="description-container">
@@ -127,7 +129,7 @@ class LandingPage extends Component {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://open.spotify.com/track/1yyoXvegrF9Q0PIL0eLPDU?si=P7U0WS2nSGaRjJjUgJuoZQ"
+                  href={playlist.SPOTIFY_URL}
                 >
                   <img src={isDark ? playIconDark : playIconLight} alt="" />
                 </a>
